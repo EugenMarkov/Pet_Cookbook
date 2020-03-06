@@ -1,6 +1,6 @@
 {
   "name": "cookbook_backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Back End code for cookbook project",
   "main": "server.js",
   "scripts": {
@@ -12,17 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/EugenMarkov/Cookbook"
+    "url": "https://github.com/EugenMarkov/Pet_Cookbook"
   },
   "author": "Eugen Markov",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "fs-extra": "^8.1.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
@@ -30,6 +28,7 @@
     "mongoose": "^5.6.10",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "path": "^0.12.7",
     "unique-random": "^2.1.0",
     "validator": "^11.1.0"
   },
