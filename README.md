@@ -9,7 +9,7 @@ Author: Eugen Markov
 
 - React with React Hooks and Redux
 
-- React styles & libraries: Material-UI, material-table, axios
+- React styles & libraries: Material-UI, material-table
 
 #### Backend: 
 - Node.js, Mongoose, Express;

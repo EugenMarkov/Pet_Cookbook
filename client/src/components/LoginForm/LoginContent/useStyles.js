@@ -98,6 +98,10 @@ const useStyles = makeStyles(theme => ({
       padding: 8,
     }
   },
+  helper: {
+    lineHeight: 1,
+    textAlign: "justify",
+  }
 }));
 
 export default useStyles;

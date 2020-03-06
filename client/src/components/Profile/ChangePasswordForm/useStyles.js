@@ -45,6 +45,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: 5,
     textAlign: "center",
   },
+  helper: {
+    lineHeight: 1,
+    textAlign: "justify",
+  }
 }));
 
 export default useStyles;

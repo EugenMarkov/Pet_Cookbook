@@ -43,6 +43,9 @@ const RegistrationContent = ({
               "this field is required",
               "Your name must be more then 2 characters, including only latin letters",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <TextValidator
             label="Last Name"
@@ -57,9 +60,12 @@ const RegistrationContent = ({
             }}
             validators={["matchRegexp:^[`'\"()A-Za-zd.s_-]{2,25}$", "required"]}
             errorMessages={[
-              "Your name must be more then 2 characters, including only latin letters",
+              "Your last name must be more then 2 characters, including only latin letters",
               "this field is required",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <TextValidator
             label="Login"
@@ -77,6 +83,9 @@ const RegistrationContent = ({
               "this field is required",
               "Your login must be 3-22 characters, including only latin letters and numbers",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <TextValidator
             label="Email"
@@ -86,8 +95,14 @@ const RegistrationContent = ({
             onChange={handleChange}
             className={classes.textField}
             size={matches ? "small" : null}
+            inputProps={{
+              autoComplete: "email",
+            }}
             validators={["required", "isEmail"]}
             errorMessages={["this field is required", "email is not valid"]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
 
           <TextValidator
@@ -108,20 +123,24 @@ const RegistrationContent = ({
                     edge="end"
                     className={classes.iconPassword}
                   >
-                    {showPassword ? (
-                      <Visibility />
-                    ) : (
-                      <VisibilityOff />
-                    )}
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               ),
+            }}
+            inputProps={{
+              type: "password",
+              maxLength: 16,
+              autoComplete: "new-password",
             }}
             validators={["required", "matchRegexp:^[a-zA-Z0-9]{8,16}$"]}
             errorMessages={[
               "this field is required",
               "Your password must be 8-16 characters, including only latin letters and numbers",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <Button type="submit" variant="outlined" className={classes.btn}>
             Registration
