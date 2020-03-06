@@ -8,7 +8,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 
-import RestaurantIcon from '@material-ui/icons/Restaurant';
+import RestaurantIcon from "@material-ui/icons/Restaurant";
 import { Box } from "@material-ui/core";
 import LoginButton from "../LoginButton/LoginButton";
 import LoginForm from "../LoginForm";
@@ -28,7 +28,7 @@ const Header = ({ isAuthenticated, recipesCounter }) => {
             </Link>
           </div>
           <Typography variant="h3" className={classes.title}>
-           COOCKBOOK
+            COOKBOOK
           </Typography>
           <div>
             <LoginButton />

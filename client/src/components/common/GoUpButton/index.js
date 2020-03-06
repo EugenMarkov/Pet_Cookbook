@@ -5,8 +5,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import useStyles from "./useStyles";
 
-const ScrollTop = props => {
-  const { children } = props;
+const ScrollTop = ({ children })=> {
   const classes = useStyles();
 
   const trigger = useScrollTrigger({

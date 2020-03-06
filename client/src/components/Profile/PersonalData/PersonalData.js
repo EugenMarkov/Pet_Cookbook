@@ -7,11 +7,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { saveUserData } from "../../../store/actions/userProfile";
 import useStyles from "./useStyles";
 
-function PersonalData({
-  user,
-  saveUserPersonalData,
-  error,
-}) {
+const PersonalData = ({ user, saveUserPersonalData, error }) => {
   const classes = useStyles();
   const [isEditable, setIsEditable] = useState(false);
   const [userData, setUserData] = useState({
@@ -67,6 +63,9 @@ function PersonalData({
               "this field is required",
               "name must be between 2 and 25 characters, only a-z, A-Z, а-я, А-Я.",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <TextValidator
             id="customer-last-name-input"
@@ -87,6 +86,9 @@ function PersonalData({
               "this field is required",
               "name must be between 2 and 25 characters, only a-z, A-Z, а-я, А-Я.",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <TextValidator
             id="customer-email-input"
@@ -102,6 +104,9 @@ function PersonalData({
             onChange={handleChange}
             validators={["required", "isEmail"]}
             errorMessages={["this field is required", "email is not valid"]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           {isEditable ? (
             <Button className={classes.btn} type="submit">
@@ -113,7 +118,7 @@ function PersonalData({
             </Button>
           )}
         </ValidatorForm>
-        {Boolean(error) && (
+        {error && (
           <Typography className={classes.message}>
             {`Data didn't save. Error: ${error.message}`}
           </Typography>

@@ -76,6 +76,9 @@ export default function ChangePasswordForm() {
               "this field is required",
               "password must be 8-16 characters, only latin letters and numbers",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <TextValidator
             id="customer-new-password-input"
@@ -93,8 +96,11 @@ export default function ChangePasswordForm() {
             validators={["required", "matchRegexp:^[a-zA-Z0-9]{8,16}$"]}
             errorMessages={[
               "this field is required",
-              "Your password must be 8-16 characters, including only latin letters and numbers",
+              "password must be 8-16 characters, only latin letters and numbers",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <TextValidator
             id="customer-confirm-password-input"
@@ -116,15 +122,18 @@ export default function ChangePasswordForm() {
             ]}
             errorMessages={[
               "this field is required",
-              "Your password must be 8-16 characters, including only latin letters and numbers",
+              "password must be 8-16 characters, only latin letters and numbers",
               "password mismatch",
             ]}
+            FormHelperTextProps={{
+              className: classes.helper
+            }}
           />
           <Button className={classes.btn} type="submit">
             SAVE PASSWORD
           </Button>
         </ValidatorForm>
-        {Boolean(message) && <Typography className={classes.message}>{message}</Typography>}
+        {message && <Typography className={classes.message}>{message}</Typography>}
       </div>
     </div>
   );

@@ -47,7 +47,7 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
           <div className={classes.wrapper}>
             <LockOpenIcon className={classes.icon} />
             <h3 className={classes.title}>LogIn</h3>
-            {Boolean(message) && <p className={classes.errMsg}>{message}</p>}
+            {message && <p className={classes.errMsg}>{message}</p>}
             <ValidatorForm
               noValidate={false}
               onSubmit={e => submitLogin(e, user)}
@@ -62,7 +62,8 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                 className={classes.textField}
                 size={matches ? "small" : null}
                 inputProps={{
-                  maxLength: 22
+                  maxLength: 22,
+                  autoComplete: "loginOrEmail",
                 }}
                 validators={[
                   "required",
@@ -73,6 +74,9 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                   "this field is required",
                   "login must be 3-22 characters (latin letters and numbers) or use email",
                 ]}
+                FormHelperTextProps={{
+                  className: classes.helper
+                }}
               />
 
               <TextValidator
@@ -99,13 +103,18 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                   ),
                 }}
                 inputProps={{
-                  maxLength: 16
+                  type: "password",
+                  maxLength: 16,
+                  autoComplete: "current-password",
                 }}
                 validators={["required", "matchRegexp:^[a-zA-Z0-9]{8,16}$"]}
                 errorMessages={[
                   "this field is required",
                   "password must be 8-16 characters, only latin letters and numbers",
                 ]}
+                FormHelperTextProps={{
+                  className: classes.helper
+                }}
               />
               <p className={classes.text}>
                 Have not an account yet? &nbsp;

@@ -3,14 +3,10 @@ import { connect } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ProfileMenu from "../Header/ProfileMenu/ProfileMenu";
-import { modalOpen } from '../../store/actions/loginActions';
+import { modalOpen } from "../../store/actions/loginActions";
 import useStyles from "./useStyles";
 
-const LoginButton = ({
-  isAuthenticated,
-  user,
-  modalOpen
-}) => {
+const LoginButton = ({ isAuthenticated, user, modalOpen }) => {
   const handleModal = () => {
     modalOpen();
   };
@@ -29,7 +25,7 @@ const LoginButton = ({
         </div>
       ) : (
         <Button className={classes.btn} variant="contained" type="button" onClick={handleModal}>
-            Sign In
+          Sign In
         </Button>
       )}
     </div>
@@ -43,6 +39,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps , { modalOpen })(
-  LoginButton
-);
+export default connect(mapStateToProps, { modalOpen })(LoginButton);
