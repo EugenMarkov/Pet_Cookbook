@@ -129,7 +129,6 @@ const RegistrationContent = ({
               ),
             }}
             inputProps={{
-              type: "password",
               maxLength: 16,
               autoComplete: "new-password",
             }}

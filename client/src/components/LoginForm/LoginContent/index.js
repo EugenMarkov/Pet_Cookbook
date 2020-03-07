@@ -103,7 +103,6 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                   ),
                 }}
                 inputProps={{
-                  type: "password",
                   maxLength: 16,
                   autoComplete: "current-password",
                 }}
