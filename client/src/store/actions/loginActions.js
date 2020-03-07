@@ -2,17 +2,25 @@ import axios from "axios";
 import jwt from "jwt-decode";
 import * as constants from "../constants";
 import setAuthToken from "../../components/common/setAuthToken";
-import { getRecipes, recipesLogOut } from "./recipes";
+import { recipesLogOut } from "./recipes";
 import isExpired from "../../components/common/isExpired/isExpired";
+import { loadUserData } from "./userProfile";
+import { loadRecipes } from "./recipes";
 
-const logInSuccess = data => {
+export const logInRequest = (user) => {
   return {
-    type: constants.LOG_IN_SUCCESS,
-    payload: data,
+    type: constants.LOG_IN_REQUEST,
+    payload: user,
   };
 };
 
-const logInFailure = error => {
+export const logInSuccess = () => {
+  return {
+    type: constants.LOG_IN_SUCCESS,
+  };
+};
+
+export const logInFailure = error => {
   return {
     type: constants.LOG_IN_FAILURE,
     payload: error,
@@ -44,16 +52,6 @@ export const preloaderClose = () => {
   };
 };
 
-export const getUser = () => dispatch => {
-  axios
-    .get("/api/customers/customer")
-    .then(response => {
-      dispatch(logInSuccess(response.data));
-    })
-    .catch(error => {
-      dispatch(logInFailure(error));
-    });
-};
 
 export const logOut = () => {
   return {
@@ -70,8 +68,8 @@ export const logIn = user => dispatch => {
         dispatch(userFromJwt(jwt(response.data.token)));
       }
       dispatch(modalClose());
-      dispatch(getRecipes());
-      dispatch(getUser());
+      dispatch(loadUserData());
+      dispatch(loadRecipes());
     })
     .catch(error => {
       dispatch(logInFailure(error));
@@ -86,17 +84,19 @@ export const LogInOrLogOut = () => dispatch => {
     if (isExpiredToken) {
       setAuthToken(token);
       dispatch(userFromJwt(jwt(token)));
-      dispatch(preloaderClose());
-      dispatch(getUser());
-      dispatch(getRecipes());
+      // dispatch(preloaderClose());
+
+      dispatch(loadUserData());
+      dispatch(loadRecipes());
+
     } else {
       setAuthToken(false);
       dispatch(logOut());
       dispatch(recipesLogOut());
-      dispatch(preloaderClose());
+      // dispatch(preloaderClose());
     }
   } else {
-    dispatch(preloaderClose());
+    // dispatch(preloaderClose());
   }
 };
 

@@ -12,10 +12,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import useStyles from "./useStyles";
 
-import { logOutAll } from "../../../store/actions/loginActions";
+import { logOut } from "../../../store/actions/loginActions";
 
 
-const ProfileMenu = ({ logOutAll }) => {
+const ProfileMenu = ({ logOut }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
@@ -38,7 +38,7 @@ const ProfileMenu = ({ logOutAll }) => {
     }
   }
   const profileLogOut = () => {
-    logOutAll();
+    logOut();
   };
 
   return (
@@ -92,4 +92,4 @@ const ProfileMenu = ({ logOutAll }) => {
   );
 };
 
-export default connect(null, { logOutAll })(ProfileMenu);
+export default connect(null, { logOut })(ProfileMenu);

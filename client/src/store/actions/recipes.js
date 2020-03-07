@@ -1,6 +1,12 @@
 import axios from "axios";
 import * as constants from "../constants";
 
+export const loadRecipes = () => {
+  return {
+    type: constants.RECIPES_REQUEST,
+  };
+};
+
 export const getRecipesSuccess = data => {
   return {
     type: constants.RECIPES_GET_SUCCESS,
@@ -14,17 +20,17 @@ export const getRecipesFailure = err => {
   };
 };
 
-export const getRecipes = () => dispatch => {
-  dispatch({ type: constants.RECIPES_REQUEST });
-  axios
-    .get("/api/recipes")
-    .then(res => {
-      dispatch(getRecipesSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(getRecipesFailure(err));
-    });
-};
+// export const getRecipes = () => dispatch => {
+//   dispatch({ type: constants.RECIPES_REQUEST });
+//   axios
+//     .get("/api/recipes")
+//     .then(res => {
+//       dispatch(getRecipesSuccess(res.data));
+//     })
+//     .catch(err => {
+//       dispatch(getRecipesFailure(err));
+//     });
+// };
 
 export const deleteRecipesItemSuccess = data => {
   return {

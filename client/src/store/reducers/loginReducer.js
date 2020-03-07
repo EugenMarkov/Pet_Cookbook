@@ -1,7 +1,7 @@
 import * as constants from "../constants";
 
 const initialState = {
-  loginPreloader: true,
+  isLoading: false,
   isAuthenticated: false,
   user: {
     firstName: "",
@@ -10,25 +10,44 @@ const initialState = {
     isAdmin: false,
   },
   error: "",
-  modalOpen: false,
+  isModalOpen: false,
 };
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case constants.LOG_IN_SUCCESS:
+    case constants.LOG_IN_REQUEST:
+      return {
+        ...state, isLoading: true,
+      };
+    case constants.USER_FROM_JWT:
       return {
         ...state,
+        isAuthenticated: true,
         user: {
           firstName: action.payload.firstName,
           lastName: action.payload.lastName,
-          email: action.payload.email,
+          email: "",
           isAdmin: action.payload.isAdmin,
         },
+      };
+    case constants.LOG_IN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: true,
         error: "",
+      };
+    case constants.LOG_IN_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: false,
+        error: action.payload,
       };
     case constants.LOG_OUT:
       return {
         ...state,
+        isLoading: false,
         isAuthenticated: false,
         user: {
           firstName: "",
@@ -37,6 +56,28 @@ const loginReducer = (state = initialState, action) => {
           isAdmin: false,
         },
         error: "",
+      };
+    // case constants.USER_DATA_REQUEST:
+    //   return {
+    //     ...state, isLoading: true,
+    //   };
+    case constants.USER_DATA_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        user: {
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          email: action.payload.email,
+          isAdmin: action.payload.isAdmin,
+        },
+        error: "",
+      };
+    case constants.USER_DATA_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
     case constants.EDIT_USER_DATA_SUCCESS:
       return {
@@ -51,11 +92,6 @@ const loginReducer = (state = initialState, action) => {
       };
     case constants.EDIT_USER_DATA_FAILURE:
       return { ...state, error: action.payload };
-    case constants.LOG_IN_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-      };
     case constants.EDIT_USER_DATA_LOCAL:
       return {
         ...state,
@@ -66,31 +102,15 @@ const loginReducer = (state = initialState, action) => {
           isAdmin: state.user.isAdmin,
         },
       };
-    case constants.PRELOADER_CLOSE:
-      return {
-        ...state,
-        loginPreloader: false,
-      };
-    case constants.USER_FROM_JWT:
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: {
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
-          email: "",
-          isAdmin: action.payload.isAdmin,
-        },
-      };
     case constants.MODAL_OPEN:
       return {
         ...state,
-        modalOpen: true,
+        isModalOpen: true,
       };
     case constants.MODAL_CLOSE:
       return {
         ...state,
-        modalOpen: false,
+        isModalOpen: false,
       };
     default:
       return state;
