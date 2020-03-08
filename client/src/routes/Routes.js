@@ -11,11 +11,11 @@ import Preloader from "../components/Preloader";
 
 import { LogInOrLogOut } from "../store/actions/loginActions";
 
-const Routes = ({ isLoading,  LogInOrLogOut, }) => {
+const Routes = ({ isLoading,  CheckLogInOrLogOut }) => {
 
   useEffect(() => {
-    LogInOrLogOut();
-  }, [LogInOrLogOut]);
+    CheckLogInOrLogOut();
+  }, [CheckLogInOrLogOut]);
 
   return isLoading ? (
     <Preloader />
@@ -35,4 +35,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { LogInOrLogOut })(Routes);
+export default connect(mapStateToProps, { CheckLogInOrLogOut: LogInOrLogOut })(Routes);
