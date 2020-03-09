@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import LoginContent from "./LoginContent";
 import { logInRequest, modalClose } from "../../store/actions/loginActions";
 
-const LoginForm = ({ logInRequest, error, modal, modalClose }) => {
+const LoginForm = ({ logInRequest, error, modal, modalClose, isLoading }) => {
   const handleError = error => {
     if (error.response.data.loginOrEmail) {
       return error.response.data.loginOrEmail;
@@ -30,6 +30,7 @@ const LoginForm = ({ logInRequest, error, modal, modalClose }) => {
         submitLogin={submitLogin}
         open={modal}
         message={error !== "" ? handleError(error) : ""}
+        isLoading={isLoading}
       />
     </>
   );
@@ -38,6 +39,7 @@ const LoginForm = ({ logInRequest, error, modal, modalClose }) => {
 const mapStateToProps = state => {
   return {
     error: state.loginReducer.error,
+    isLoading: state.loginReducer.isLoading,
     modal: state.loginReducer.isModalOpen,
   };
 };

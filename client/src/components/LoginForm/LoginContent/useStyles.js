@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   },
   btn: {
     letterSpacing: "2px",
-    margin: "10px 0",
+    margin: "11px 0",
     padding: "12px 100px",
     color: "white",
     width: "50%",

@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Typography from "@material-ui/core/Typography";
 import Backdrop from "@material-ui/core/Backdrop";
 import Button from "@material-ui/core/Button";
 import Fade from "@material-ui/core/Fade";
 import Modal from "@material-ui/core/Modal";
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+import PreloaderAdaptiveSmall from "../../Preloader/AdaptiveSmall";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import useStyles from "./useStyles";
 
-const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
+const LoginContent = ({ handleOpen, submitLogin, open, message, isLoading }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [user, setValues] = useState({
     loginOrEmail: "",
@@ -47,7 +49,7 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
           <div className={classes.wrapper}>
             <LockOpenIcon className={classes.icon} />
             <h3 className={classes.title}>LogIn</h3>
-            {message && <p className={classes.errMsg}>{message}</p>}
+            {/*{message && <p className={classes.errMsg}>{message}</p>}*/}
             <ValidatorForm
               noValidate={false}
               onSubmit={e => submitLogin(e, user)}
@@ -58,7 +60,7 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                 variant="outlined"
                 name="loginOrEmail"
                 value={user.loginOrEmail}
-                onChange={(e) => handleChange(e)}
+                onChange={e => handleChange(e)}
                 className={classes.textField}
                 size={matches ? "small" : null}
                 inputProps={{
@@ -75,7 +77,7 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                   "login must be 3-22 characters (latin letters and numbers) or use email",
                 ]}
                 FormHelperTextProps={{
-                  className: classes.helper
+                  className: classes.helper,
                 }}
               />
 
@@ -85,7 +87,7 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                 label="Password"
                 name="password"
                 value={user.password}
-                onChange={(e) => handleChange(e)}
+                onChange={e => handleChange(e)}
                 size={matches ? "small" : null}
                 InputProps={{
                   type: showPassword ? "text" : "password",
@@ -112,7 +114,7 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                   "password must be 8-16 characters, only latin letters and numbers",
                 ]}
                 FormHelperTextProps={{
-                  className: classes.helper
+                  className: classes.helper,
                 }}
               />
               <p className={classes.text}>
@@ -121,10 +123,15 @@ const LoginContent = ({ handleOpen, submitLogin, open, message }) => {
                   <span className={classes.regLink}>Registration</span>
                 </Link>
               </p>
-              <Button className={classes.btn} type="submit">
-                Login
-              </Button>
+              {isLoading ? (
+                <PreloaderAdaptiveSmall />
+              ) : (
+                <Button className={classes.btn} type="submit">
+                  Login
+                </Button>
+              )}
             </ValidatorForm>
+            {message && <Typography className={classes.errMsg}>{message}</Typography>}
           </div>
         </div>
       </Fade>

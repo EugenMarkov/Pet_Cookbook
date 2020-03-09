@@ -39,6 +39,12 @@ export const userFromJwt = data => {
   };
 };
 
+export const preloaderClose = () => {
+  return {
+    type: constants.PRELOADER_CLOSE,
+  };
+};
+
 export const logOut = () => {
   return {
     type: constants.LOG_OUT,

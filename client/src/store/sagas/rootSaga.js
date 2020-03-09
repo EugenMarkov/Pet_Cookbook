@@ -1,7 +1,7 @@
 import { all } from "redux-saga/effects";
-import { watchUserData } from "./userSaga";
+import { watchUserData, watchEditUserData } from "./userSaga";
 import { watchUserLogin, watchUserLogOut, watchUserLogInOrLogOut} from "./loginSaga";
-import { watchUserRecipes } from "./recipesSaga";
+import { watchUserRecipes, watchAddRecipeItem, } from "./recipesSaga";
 
 export default function* () {
   yield all ([
@@ -10,5 +10,7 @@ export default function* () {
     watchUserData(),
     watchUserLogOut(),
     watchUserLogInOrLogOut(),
+    watchEditUserData(),
+    // watchAddRecipeItem,
   ])
 }

@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import Profile from "../../components/Profile/Profile";
 import ScrollOnTop from "../../components/common/ScrollOnTop/ScrollOnTop";
 
-const Profiler = () => {
+const ProfilePage = () => {
   return (
     <>
       <ScrollOnTop />
@@ -17,4 +17,4 @@ const Profiler = () => {
   );
 };
 
-export default Profiler;
+export default ProfilePage;

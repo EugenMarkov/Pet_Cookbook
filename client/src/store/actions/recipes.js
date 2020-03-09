@@ -20,18 +20,6 @@ export const getRecipesFailure = err => {
   };
 };
 
-// export const getRecipes = () => dispatch => {
-//   dispatch({ type: constants.RECIPES_REQUEST });
-//   axios
-//     .get("/api/recipes")
-//     .then(res => {
-//       dispatch(getRecipesSuccess(res.data));
-//     })
-//     .catch(err => {
-//       dispatch(getRecipesFailure(err));
-//     });
-// };
-
 export const deleteRecipesItemSuccess = data => {
   return {
     type: constants.RECIPES_DELETE_ITEM_SUCCESS,
