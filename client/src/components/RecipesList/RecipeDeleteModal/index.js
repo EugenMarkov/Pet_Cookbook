@@ -56,15 +56,15 @@ const RecipeDeleteModal = ({ recipeItem, isOpen, isLoading, error, message, clos
             )}
             {isLoading ? (
               <PreloaderAdaptiveSmall />
-              ) : (
-                <Button variant="contained" onClick={() => submitHandler()} className={classes.btn} disabled={Boolean(message)}>
+              ) : ( !message &&
+                <Button variant="contained" onClick={() => submitHandler()} className={classes.btn} >
                   Delete
                 </Button>
               )}
             {error && (
-            <Typography component="h3" align="center" className={classes.message}>
-              {error.message}
-            </Typography>
+              <Typography component="h3" align="center" className={classes.message}>
+                {error.message}
+              </Typography>
               )}
             {message && (
               <Typography component="h3" align="center" className={classes.message}>

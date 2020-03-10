@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   btn :{
     display: "flex",
     justifyContent: "center",
-    margin: "8px auto 26px"
+    margin: "17px auto"
   }
 }));
 

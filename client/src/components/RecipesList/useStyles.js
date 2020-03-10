@@ -14,9 +14,6 @@ const useStyles = makeStyles(theme => ({
     margin: "16px 0px 16px 0",
     textAlign: "center",
   },
-  btn: {
-    margin: theme.spacing(2),
-  }
 }));
 
 export default useStyles;

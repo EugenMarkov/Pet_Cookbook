@@ -1,5 +1,5 @@
 import axios from "axios";
-import { put, call, take, fork, delay, takeLatest } from "redux-saga/effects";
+import { put, call, take, fork, delay, cancel, takeLatest, all } from "redux-saga/effects";
 import * as constants from "./../constants";
 import { logInSuccess, logInFailure, userFromJwt, preloaderClose, modalClose, logOut } from "./../actions/loginActions";
 import { loadUserData } from "./../actions/userProfile";
@@ -30,21 +30,16 @@ export function* fetchUserLogin(user) {
 export function* userLogInFlow() {
   while (true) {
     const { payload } = yield take(constants.LOG_IN_REQUEST);
-    yield call(fetchUserLogin, payload);
+    const task = yield fork(fetchUserLogin, payload);
+    const action = yield take([constants.LOG_OUT, constants.LOG_IN_FAILURE]);
+    if (action.type === constants.LOG_OUT)
+      yield cancel(task)
   }
-}
-
-export function* watchUserLogin() {
-  yield fork(userLogInFlow)
 }
 
 export function* userLogOut() {
     yield setAuthToken(false);
     yield put(recipesLogOut());
-}
-
-export function* watchUserLogOut() {
-  yield takeLatest(constants.LOG_OUT, userLogOut)
 }
 
 export function* userLogInOrLogOutFlow() {
@@ -71,6 +66,11 @@ export function* userLogInOrLogOutFlow() {
   }
 }
 
-export function* watchUserLogInOrLogOut() {
-  yield fork(userLogInOrLogOutFlow)
+
+export function* watchLogInAndLogOut() {
+  yield all([
+    takeLatest(constants.LOG_OUT, userLogOut),
+    fork(userLogInFlow),
+    fork(userLogInOrLogOutFlow),
+  ]);
 }

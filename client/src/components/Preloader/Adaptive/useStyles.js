@@ -5,13 +5,13 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: 180,
+    height: 450,
     marginTop: 100,
     marginBottom: 100,
   },
   root: {
-    display: 'flex',
-    '& > * + *': {
+    display: "flex",
+    "& > * + *": {
       marginLeft: theme.spacing(4),
     },
   },

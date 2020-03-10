@@ -1,5 +1,5 @@
 import axios from "axios";
-import { takeLatest, put, call, take } from "redux-saga/effects";
+import { takeLatest, put, call, take, all } from "redux-saga/effects";
 import * as constants from "../constants";
 import {
   editDataFailure,
@@ -9,8 +9,7 @@ import {
 } from "../actions/userProfile";
 
 const fetchtUserPersonalData = () => {
-  return axios
-    .get("/api/customers/customer")
+  return axios.get("/api/customers/customer")
     .then(res => ({ data: res.data }))
     .catch(error => ({ error }));
 };
@@ -20,13 +19,8 @@ export function* getUserData() {
   data ? yield put(loadUserSuccess(data)) : yield put(loadUserFailure(error));
 }
 
-export function* watchUserData() {
-  yield takeLatest(constants.USER_DATA_REQUEST, getUserData);
-}
-
 const fetchUpdatedUserData = updatedCustomer => {
-  return axios
-    .put("/api/customers", updatedCustomer)
+  return axios.put("/api/customers", updatedCustomer)
     .then(updatedUser => ({ updatedData: updatedUser.data }))
     .catch(error => ({ error }));
 };
@@ -37,6 +31,9 @@ export function* saveUserData() {
   updatedData ? yield put(editDataSuccess(updatedData)) : yield put(editDataFailure(error));
 }
 
-export function* watchEditUserData() {
-  yield takeLatest(constants.EDIT_USER_DATA_INIT, saveUserData);
+export function* watchUser() {
+  yield all([
+    takeLatest(constants.USER_DATA_REQUEST, getUserData),
+    takeLatest(constants.EDIT_USER_DATA_INIT, saveUserData),
+  ]);
 }
