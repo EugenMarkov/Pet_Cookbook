@@ -11,7 +11,7 @@ const initialState = {
     isAdmin: false,
   },
   error: "",
-  isModalOpen: false,
+  isModalOpen: true,
 };
 
 const loginReducer = (state = initialState, action) => {

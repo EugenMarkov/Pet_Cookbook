@@ -4,10 +4,11 @@ const useStyles = makeStyles(theme => ({
   wrapper: {
     display: "inline-flex",
     minWidth: 260,
-    flexDirection: "row-reverse",
+    flexDirection: "row",
     [theme.breakpoints.down("sm")]: {
       minWidth: 50,
     },
+    justifyContent: "flex-end",
   },
   link: {
     marginRight: "20px",
@@ -30,6 +31,20 @@ const useStyles = makeStyles(theme => ({
   },
   btn: {
     marginRight: 24,
+  },
+  regLink: {
+    display: "inline-flex",
+    alignItems: "center",
+    marginRight: 15,
+    justifyContent: "flex-end",
+    color:  theme.palette.secondary.dark,
+    textDecoration: "none",
+    "&:hover": {
+      color:  theme.palette.primary.main,
+    },
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
   },
 }));
 

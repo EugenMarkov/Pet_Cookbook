@@ -51,6 +51,7 @@ export function* userLogInOrLogOutFlow() {
       if (isExpiredToken > 10) {
         yield setAuthToken(token);
         yield put(userFromJwt(jwt(token)));
+        yield put(modalClose());
         yield put(preloaderClose());
         yield put(loadUserData());
         yield put(loadRecipes());

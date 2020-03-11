@@ -49,7 +49,6 @@ const LoginContent = ({ handleOpen, submitLogin, open, message, isLoading }) => 
           <div className={classes.wrapper}>
             <LockOpenIcon className={classes.icon} />
             <h3 className={classes.title}>LogIn</h3>
-            {/*{message && <p className={classes.errMsg}>{message}</p>}*/}
             <ValidatorForm
               noValidate={false}
               onSubmit={e => submitLogin(e, user)}
