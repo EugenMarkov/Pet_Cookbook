@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 30,
     minHeight: "80vh",
   },
-
   title: {
     fontSize: 18,
     paddingTop: 30,

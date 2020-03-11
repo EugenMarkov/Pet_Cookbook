@@ -55,4 +55,4 @@ export const LogInOrLogOut = () => {
   return {
     type: constants.LOG_IN_OR_LOG_OUT_CHECK,
   };
-}
+};
