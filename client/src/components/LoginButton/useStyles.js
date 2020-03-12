@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     display: "inline-flex",
     alignItems: "center",
     marginRight: 15,
-    justifyContent: "flex-end",
     color:  theme.palette.secondary.dark,
     textDecoration: "none",
     "&:hover": {

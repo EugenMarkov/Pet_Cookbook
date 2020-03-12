@@ -30,7 +30,7 @@ const LoginButton = ({ isAuthenticated, user, modalOpen }) => {
             <Typography component="span">Registration</Typography>
           </Link>
           <Button className={classes.btn} variant="contained" type="button" onClick={handleModal}>
-            Sign In
+            Login
           </Button>
         </div>
       )}

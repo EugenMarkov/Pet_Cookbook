@@ -118,8 +118,8 @@ const LoginContent = ({ handleOpen, submitLogin, open, message, isLoading }) => 
               />
               <p className={classes.text}>
                 Have not an account yet? &nbsp;
-                <Link to="/registration" onClick={handleOpen}>
-                  <span className={classes.regLink}>Registration</span>
+                <Link className={classes.regLink} to="/registration" onClick={handleOpen}>
+                  <Typography className={classes.regLink} component="span">Registration</Typography>
                 </Link>
               </p>
               {isLoading ? (
