@@ -4,9 +4,8 @@ const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: 30,
     paddingBottom: 30,
-    minHeight: "75vh",
+    minHeight: "80vh",
   },
-
   title: {
     fontSize: 18,
     paddingTop: 30,

@@ -4,10 +4,10 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { saveUserData } from "../../../store/actions/userProfile";
+import { editDataInit, editDataRequest } from "../../../store/actions/userProfile";
 import useStyles from "./useStyles";
 
-const PersonalData = ({ user, saveUserPersonalData, error }) => {
+const PersonalData = ({ user, saveUserPersonalData, editDataInit, error }) => {
   const classes = useStyles();
   const [isEditable, setIsEditable] = useState(false);
   const [userData, setUserData] = useState({
@@ -24,7 +24,9 @@ const PersonalData = ({ user, saveUserPersonalData, error }) => {
   };
 
   const saveData = event => {
-    saveUserPersonalData(event, userData);
+    event.preventDefault();
+    editDataInit();
+    saveUserPersonalData(userData);
     if (!error) {
       setIsEditable(false);
     }
@@ -135,4 +137,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { saveUserPersonalData: saveUserData })(PersonalData);
+export default connect(mapStateToProps, { saveUserPersonalData: editDataRequest, editDataInit })(PersonalData);

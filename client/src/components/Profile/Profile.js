@@ -10,7 +10,9 @@ import useStyles from "./useStyles";
 import PersonalData from "./PersonalData/PersonalData";
 import ChangePasswordForm from "./ChangePasswordForm/ChangePasswordForm";
 
-import { getUser, logOutAll } from "../../store/actions/loginActions";
+import { logOut } from "../../store/actions/loginActions";
+import { loadUserData } from "../../store/actions/userProfile";
+
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -30,7 +32,7 @@ function TabPanel(props) {
   );
 }
 
-const Profile = ({ getUserData, logOutAll }) => {
+const Profile = ({ loadUserData, logOut }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -38,7 +40,7 @@ const Profile = ({ getUserData, logOutAll }) => {
     setValue(newValue);
   };
   const profileLogOut = () => {
-    logOutAll();
+    logOut();
   };
 
   return (
@@ -60,7 +62,7 @@ const Profile = ({ getUserData, logOutAll }) => {
           label="Personal Details "
           id="vertical-tab-1"
           aria-controls="vertical-tabpanel-1"
-          onClick={() => getUserData()}
+          onClick={() => loadUserData()}
         />
         <Tab
           label="Log Out"
@@ -85,7 +87,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {
-  getUserData: getUser,
-  logOutAll,
-})(Profile);
+export default connect(mapStateToProps, { loadUserData, logOut })(Profile);

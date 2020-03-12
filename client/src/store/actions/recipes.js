@@ -1,6 +1,10 @@
-import axios from "axios";
 import * as constants from "../constants";
 
+export const loadRecipes = () => {
+  return {
+    type: constants.RECIPES_REQUEST,
+  };
+};
 export const getRecipesSuccess = data => {
   return {
     type: constants.RECIPES_GET_SUCCESS,
@@ -14,18 +18,12 @@ export const getRecipesFailure = err => {
   };
 };
 
-export const getRecipes = () => dispatch => {
-  dispatch({ type: constants.RECIPES_REQUEST });
-  axios
-    .get("/api/recipes")
-    .then(res => {
-      dispatch(getRecipesSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(getRecipesFailure(err));
-    });
+export const recipesDeleteItem = id => {
+  return {
+    type: constants.RECIPES_DELETE_ITEM_REQUEST,
+    payload: id,
+  };
 };
-
 export const deleteRecipesItemSuccess = data => {
   return {
     type: constants.RECIPES_DELETE_ITEM_SUCCESS,
@@ -39,18 +37,12 @@ export const deleteRecipesItemtFailure = err => {
   };
 };
 
-export const recipesDeleteItem = id => dispatch => {
-  dispatch({ type: constants.RECIPES_REQUEST });
-  axios
-    .delete(`/api/recipes/${id}`)
-    .then(res => {
-      dispatch(deleteRecipesItemSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(deleteRecipesItemtFailure(err));
-    });
+export const recipesAddItem = recipe => {
+  return {
+    type: constants.RECIPES_ADD_ITEM_REQUEST,
+    payload: recipe,
+  };
 };
-
 export const addRecipesItemSuccess = data => {
   return {
     type: constants.RECIPES_ADD_ITEM_SUCCESS,
@@ -64,43 +56,24 @@ export const addRecipesItemtFailure = err => {
   };
 };
 
-export const recipesAddItem = (recipe) => dispatch => {
-  dispatch({ type: constants.RECIPES_REQUEST });
-  axios
-    .post(`/api/recipes`, recipe)
-    .then(res => {
-      dispatch(addRecipesItemSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(addRecipesItemtFailure(err));
-    });
+export const recipesEditItem = ( id, updatedRecipe) => {
+  return {
+    type: constants.RECIPES_EDIT_ITEM_REQUEST,
+    payload: { id: id, updatedRecipe: updatedRecipe },
+  };
 };
-
 export const editRecipesItemSuccess = data => {
   return {
     type: constants.RECIPES_EDIT_ITEM_SUCCESS,
     payload: data,
   };
 };
-export const editRecipesItemtFailure = err => {
+export const editRecipesItemFailure = err => {
   return {
     type: constants.RECIPES_EDIT_ITEM_FAILURE,
     payload: err,
   };
 };
-
-export const recipesEditItem = (id, updatedRecipe) => dispatch => {
-  dispatch({ type: constants.RECIPES_REQUEST });
-  axios
-    .put(`/api/recipes/${id}`, updatedRecipe)
-    .then(res => {
-      dispatch(editRecipesItemSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(editRecipesItemtFailure(err));
-    });
-};
-
 
 export const recipesCleanErrorAndMessage = () => {
   return {
