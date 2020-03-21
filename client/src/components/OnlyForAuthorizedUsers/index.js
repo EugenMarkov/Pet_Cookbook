@@ -7,7 +7,7 @@ import RecipesList from "../RecipesList";
 import useStyles from "./useStyles";
 
 
-const OnlyForAuthorzedUsers = ({ isAuthenticated }) => {
+const OnlyForAuthorizedUsers = ({ isAuthenticated }) => {
   const classes = useStyles();
 
   return isAuthenticated ? (
@@ -25,4 +25,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(OnlyForAuthorzedUsers);
+export default connect(mapStateToProps)(OnlyForAuthorizedUsers);

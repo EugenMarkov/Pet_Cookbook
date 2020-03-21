@@ -1,3 +1,4 @@
+import "react-app-polyfill/ie11";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -8,6 +9,7 @@ import Routes from "./routes/Routes";
 import { store } from "./store";
 import theme from "./theme";
 import "./index.css";
+import * as serviceWorker from "./serviceWorker";
 
 import * as serviceWorker from "./serviceWorker";
 
